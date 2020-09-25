@@ -802,14 +802,14 @@
  * LWIP_BROADCAST_PING==1: respond to broadcast pings (default is unicast only)
  */
 #if !defined LWIP_BROADCAST_PING || defined __DOXYGEN__
-#define LWIP_BROADCAST_PING             0
+#define LWIP_BROADCAST_PING             1
 #endif
 
 /**
  * LWIP_MULTICAST_PING==1: respond to multicast pings (default is unicast only)
  */
 #if !defined LWIP_MULTICAST_PING || defined __DOXYGEN__
-#define LWIP_MULTICAST_PING             0
+#define LWIP_MULTICAST_PING             1
 #endif
 /**
  * @}
@@ -2215,7 +2215,7 @@
  * LWIP_IPV6_NUM_ADDRESSES: Number of IPv6 addresses per netif.
  */
 #if !defined LWIP_IPV6_NUM_ADDRESSES || defined __DOXYGEN__
-#define LWIP_IPV6_NUM_ADDRESSES         3
+#define LWIP_IPV6_NUM_ADDRESSES         20
 #endif
 
 /**

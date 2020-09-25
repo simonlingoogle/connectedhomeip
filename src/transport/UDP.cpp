@@ -46,6 +46,7 @@ UDP::~UDP()
 CHIP_ERROR UDP::Init(UdpListenParameters & params)
 {
     CHIP_ERROR err = CHIP_NO_ERROR;
+    IPAddress multicastAddr;
 
     VerifyOrExit(mState == State::kNotReady, err = CHIP_ERROR_INCORRECT_STATE);
 
@@ -57,6 +58,12 @@ CHIP_ERROR UDP::Init(UdpListenParameters & params)
 
     err = mUDPEndPoint->Listen();
     SuccessOrExit(err);
+
+    if (params.GetAddressType() == kIPAddressType_IPv6) {
+        IPAddress::FromString("ff05::1234:777a:1", multicastAddr);
+        err = mUDPEndPoint->JoinMulticastGroup(params.GetInterfaceId(), multicastAddr);
+        SuccessOrExit(err);
+    }
 
     mUDPEndPoint->AppState          = reinterpret_cast<void *>(this);
     mUDPEndPoint->OnMessageReceived = OnUdpReceive;

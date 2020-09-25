@@ -199,7 +199,7 @@ void InitServer()
     InitDataModelHandler();
 
     err = sessions.Init(EXAMPLE_SERVER_NODEID, &DeviceLayer::SystemLayer,
-                        UdpListenParameters(&DeviceLayer::InetLayer).SetAddressType(kIPAddressType_IPv6));
+                        UdpListenParameters(&DeviceLayer::InetLayer).SetAddressType(kIPAddressType_IPv6).SetInterfaceId(chip::DeviceLayer::ThreadStackMgrImpl().ThreadNetIf()));
     SuccessOrExit(err);
 
     // TODO: ESP32 echo server supports actual pairing, needs to investigate how to share this with ESP32
